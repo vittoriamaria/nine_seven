@@ -168,7 +168,7 @@ body {
 
 .slide:nth-child(4) {
     background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                      url('imagens/BANNER4.png');
+                      url('imagens/BANNER4.1.png');
 }
 
 .slide.active {
