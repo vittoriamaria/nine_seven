@@ -725,15 +725,20 @@ body {
         transform: rotate(-45deg) translate(7px, -7px);
     }
     
-    /* Esconder ícone do carrinho no desktop e mostrar no mobile */
+    /* CORREÇÃO: Garantir que o ícone do carrinho fique sempre visível no header */
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
     .cart-icon {
-        display: none;
+        display: flex;
+        position: relative;
     }
     
     .cart-icon-mobile {
-        display: block;
-        margin-top: 2rem;
-        text-align: center;
+        display: none;
     }
     
     /* Ajustes do banner */
@@ -868,6 +873,7 @@ body {
         display: none;
     }
 }
+
 /* ==================== PREÇOS PROMOCIONAIS ==================== */
 .price-box {
     margin-bottom: 0.5rem;

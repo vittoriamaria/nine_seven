@@ -94,50 +94,116 @@ function adicionarAoCarrinho(produto) {
     setTimeout(() => mensagem.remove(), 2000);
 }
 
-// ==================== WHATSAPP FINALIZAR COMPRA (VERSÃO DEFINITIVA) ====================
+// ==================== CHECKOUT COM FORMULÁRIO MODAL ====================
 function finalizarCompraWhatsApp() {
     if(carrinho.length === 0) {
         alert('Seu carrinho está vazio!');
         return false;
     }
-    
-    // Montar mensagem com campos para o cliente preencher no próprio WhatsApp
-    let mensagem = "🛍️ *NOVO PEDIDO - NINE SEVEN* 🛍️\n\n";
-    mensagem += "*PRODUTOS:*\n";
-    
-    let total = 0;
-    carrinho.forEach(item => {
-        const subtotal = item.preco * item.quantidade;
-        total += subtotal;
-        mensagem += `- ${item.nome} | ${item.quantidade}x | R$ ${item.preco.toFixed(2)} = R$ ${subtotal.toFixed(2)}\n`;
+
+    // Cria o modal dinamicamente
+    const modal = document.createElement('div');
+    modal.id = 'checkout-modal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+    `;
+
+    modal.innerHTML = `
+        <div style="background: white; max-width: 500px; width: 90%; padding: 2rem; border-radius: 8px; position: relative;">
+            <h3 style="margin-bottom: 1rem;">Complete seus dados</h3>
+            <form id="dados-cliente-form">
+                <div style="margin-bottom: 1rem;">
+                    <label>Nome completo *</label>
+                    <input type="text" id="cliente-nome" required style="width:100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label>Telefone (com DDD) *</label>
+                    <input type="tel" id="cliente-telefone" required style="width:100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label>Endereço completo *</label>
+                    <textarea id="cliente-endereco" rows="2" required style="width:100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label>Forma de pagamento *</label>
+                    <select id="cliente-pagamento" required style="width:100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="">Selecione</option>
+                        <option>Cartão de crédito</option>
+                        <option>Cartão de débito</option>
+                        <option>PIX</option>
+                        <option>Boleto</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" id="fechar-modal" style="background: #ccc; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Cancelar</button>
+                    <button type="submit" style="background: #25D366; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Enviar pedido via WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const form = modal.querySelector('#dados-cliente-form');
+    const fecharBtn = modal.querySelector('#fechar-modal');
+
+    fecharBtn.addEventListener('click', () => modal.remove());
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nome = document.getElementById('cliente-nome').value.trim();
+        const telefone = document.getElementById('cliente-telefone').value.trim();
+        const endereco = document.getElementById('cliente-endereco').value.trim();
+        const pagamento = document.getElementById('cliente-pagamento').value;
+
+        if (!nome || !telefone || !endereco || !pagamento) {
+            alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+
+        // Montar mensagem completa
+        let mensagem = "🛍️ *NOVO PEDIDO - NINE SEVEN* 🛍️\n\n";
+        mensagem += "*PRODUTOS:*\n";
+        let total = 0;
+        carrinho.forEach(item => {
+            const subtotal = item.preco * item.quantidade;
+            total += subtotal;
+            mensagem += `- ${item.nome} | ${item.quantidade}x | R$ ${item.preco.toFixed(2)} = R$ ${subtotal.toFixed(2)}\n`;
+        });
+        mensagem += `\n*TOTAL: R$ ${total.toFixed(2)}*\n\n`;
+        mensagem += "------------------------------------\n";
+        mensagem += "*DADOS DO CLIENTE:*\n";
+        mensagem += `Nome: ${nome}\n`;
+        mensagem += `Telefone: ${telefone}\n`;
+        mensagem += `Endereço: ${endereco}\n`;
+        mensagem += `Forma de pagamento: ${pagamento}\n\n`;
+        mensagem += "💎 *Nine Seven - Enalteça o seu brilho!*";
+
+        const textoCodificado = encodeURIComponent(mensagem);
+        const numeroWhatsApp = "5583981694919";
+        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${textoCodificado}`;
+
+        window.open(urlWhatsApp, '_blank');
+
+        // Limpar carrinho e fechar modal
+        carrinho = [];
+        salvarCarrinho();
+        atualizarContadorCarrinho();
+        renderizarCarrinhoSidebar();
+        modal.remove();
+
+        alert("✅ Pedido enviado! Obrigada por escolher a Nine Seven!");
     });
-    
-    mensagem += `\n*TOTAL: R$ ${total.toFixed(2)}*\n\n`;
-    mensagem += "------------------------------------\n";
-    mensagem += "*DADOS DO CLIENTE (PREENCHE AÍ):*\n";
-    mensagem += "Nome: \n";
-    mensagem += "Telefone: \n";
-    mensagem += "Forma de pagamento: \n";
-    mensagem += "Endereço: \n\n";
-    mensagem += "💎 *Nine Seven - Enalteça o seu brilho!*";
-    
-    // Codificar a mensagem para URL
-    const textoCodificado = encodeURIComponent(mensagem);
-    const numeroWhatsApp = "5583981694919";
-    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${textoCodificado}`;
-    
-    // Abrir WhatsApp em nova aba
-    window.open(urlWhatsApp, '_blank');
-    
-    // Limpar carrinho
-    carrinho = [];
-    salvarCarrinho();
-    atualizarContadorCarrinho();
-    renderizarCarrinhoSidebar();
-    
-    alert("✅ Pedido enviado! Obrigada por escolher a Nine Seven!");
-    
-    return true;
 }
 
 // ==================== MENSAGENS DE CONTATO ====================
