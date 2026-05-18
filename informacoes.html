@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações - Nine Seven </title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+               <a href="index.html">
+                    <img src="imagens/logoNine7.png" width="100px" height="100px" alt="Nine Seven"></a>
+            </div>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="sale.html">Promoções</a></li>
+                    <li><a href="tendencias.html">Tendências</a></li>
+                    <li><a href="informacoes.html">Informações</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+
+
+                <div class="cart-icon-mobile">
+                    <i class="fas fa-shopping-bag" id="cart-icon-mobile"></i>
+                    <span class="cart-count" id="cart-count-mobile">0</span>
+                </div>
+            </nav>
+            <div class="header-actions">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-bag" id="cart-icon"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: R$ <span id="cart-total">0.00</span></div>
+            <button class="btn-checkout" id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <main>
+        <div class="container info-page" style="margin-top: 100px;">
+            <div class="section-title">
+                <h2>Informações Úteis</h2>
+                <span>Tudo o que você precisa saber</span>
+            </div>
+            
+            <div class="info-card">
+                <h3>🔄 Trocas e Devoluções</h3>
+                <p><strong>Prazo:</strong> 30 dias após o recebimento para desistência da compra.</p>
+                <p><strong>Condições:</strong> O produto deve estar em sua embalagem original, sem sinais de uso, com etiquetas e acessórios.</p>
+                <p><strong>Como solicitar:</strong> Entre em contato pelo e-mail trocas@elegancejoias.com ou pelo nosso WhatsApp.</p>
+                <p><strong>Reembolso:</strong> Após análise, o valor será devolvido no mesmo método de pagamento em até 7 dias úteis.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🧼 Cuidados com as peças</h3>
+                <p><strong>Durabilidade:</strong> Nossas peças são folheadas a ouro e prata com camada protetora.</p>
+                <p><strong>Recomendações:</strong></p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li>Evite contato com perfumes, cremes e produtos químicos</li>
+                    <li>Não use na piscina, mar ou durante atividades físicas intensas</li>
+                    <li>Guarde em saquinhos individuais para evitar arranhões</li>
+                    <li>Limpe com flanela macia e seca após o uso</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>📦 Garantia e Entregas</h3>
+                <p><strong>Garantia:</strong> 90 dias contra defeitos de fabricação.</p>
+                <p><strong>Prazo de entrega:</strong> 5 a 15 dias úteis para todo Brasil.</p>
+                <p><strong>Frete Grátis:</strong> Para compras acima de R$ 299,00.</p>
+                <p><strong>Rastreio:</strong> Enviamos código de rastreamento por e-mail.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>💳 Formas de Pagamento</h3>
+                <p>Aceitamos cartões de crédito (Visa, Mastercard, Elo, American Express), PayPal e PIX com 10% de desconto.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <p><strong>Nine Seven</strong></p>
+                <p>CNPJ: 12.345.678/0001-90</p>
+                <p>Rua Gercino de Farias Leite, 178 - Catolé, Campina Grande - PB</p>
+                <p>Telefone: (83) 98169-4919</p>
+                <p>&copy; 2026 Nine Seven - Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-social">
+              <a href="https://www.instagram.com/nine7acessorios?igsh=czRmdmdidGx3aTcy"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/message/MOTHCY2DU4R7M1"><i class="fab fa-whatsapp"></i></a>
+               
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

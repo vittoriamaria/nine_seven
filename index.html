@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Nine Seven - Enalteça o seu brilho!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- MENU FIXO + HAMBURGUER -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="imagens/logoNine7.png" width="100px" height="100px" alt="Nine Seven"></a>
+            </div>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="sale.html">Promoções</a></li>
+                    <li><a href="tendencias.html">Tendências</a></li>
+                    <li><a href="informacoes.html">Informações</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <div class="cart-icon-mobile">
+                    <i class="fas fa-shopping-bag" id="cart-icon-mobile"></i>
+                    <span class="cart-count" id="cart-count-mobile">0</span>
+                </div>
+            </nav>
+
+            <div class="header-actions">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-bag" id="cart-icon"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CARRINHO SIDEBAR (SIMULAÇÃO) -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: R$ <span id="cart-total">0.00</span></div>
+            <button class="btn-checkout" id="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <main>
+        <!-- Banner Principal com Carrossel -->
+        <div class="hero-banner">
+            <div class="slides-container">
+                <div class="slide active">
+                    <div class="slide-content">
+                        <h1>Jóias que se eternizam</h1>
+                        <p>Enalteça o seu brilho!</p>
+                        <a href="produtos.html" class="btn-primary">Descubra a coleção</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <h1>Coleção Essenciais</h1>
+                        <p>Peças exclusivas para momentos únicos</p>
+                        <a href="sale.html" class="btn-primary">Venha conferir</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <h1>Frete Grátis</h1>
+                        <p>Para compras acima de R$ 299,00</p>
+                        <a href="produtos.html" class="btn-primary">Comprar agora</a>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                       <!-- <h1>Até 40% OFF</h1> -->
+                       <!-- <p>Seleção imperdível na SALE</p> --> 
+                        <a href="sale.html" class="btn-primary">Aproveitar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botões de navegação -->
+            <button class="slider-btn prev" id="prevSlide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-btn next" id="nextSlide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Indicadores (dots) -->
+            <div class="slider-dots" id="sliderDots"></div>
+        </div>
+
+        <!-- Produtos em destaque -->
+        <div class="container">
+            <div class="section-title">
+                <h2>Produtos em Destaque</h2>
+                <span>Peças mais amadas da estação</span>
+            </div>
+            <div class="products-grid" id="featured-products"></div>
+        </div>
+    </main>
+
+    <!-- RODAPÉ (todas páginas) -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <p><strong>Nine Seven</strong></p>
+                <p>CNPJ: 12.345.678/0001-90</p>
+                <p>Rua Gercino de Farias Leite, 178 - Catolé, Campina Grande - PB</p>
+                <p>Telefone: (83) 98169-4919</p>
+                <p>&copy; 2026 Nine Seven - Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-social">
+              <a href="https://www.instagram.com/nine7acessorios?igsh=czRmdmdidGx3aTcy"><i class="fab fa-instagram"></i></a>
+              <a href="https://wa.me/message/MOTHCY2DU4R7M1"><i class="fab fa-whatsapp"></i></a>
+               
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
